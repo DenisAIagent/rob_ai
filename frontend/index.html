@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DevCraft AI</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <h1>DevCraft AI</h1>
+  <form id="generate-form">
+    <input type="text" id="project-name" placeholder="Project name" required>
+    <textarea id="description" placeholder="Describe your project" required></textarea>
+    <button type="submit">Generate</button>
+  </form>
+  <div id="analysis"></div>
+  <div id="progress">
+    <progress id="progress-bar" max="100" value="0"></progress>
+    <pre id="logs"></pre>
+  </div>
+  <a id="download-link" style="display:none;">Download</a>
+  <script src="assets/script.js"></script>
+</body>
+</html>
