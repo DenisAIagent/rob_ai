@@ -24,3 +24,16 @@ Run the tests with:
 ```bash
 pytest
 ```
+
+## Frontend
+
+The `frontend` directory contains a simple web interface that interacts with the
+API. It displays analysis results, streams logs via WebSockets and provides a
+link to download the generated project.
+
+Open `frontend/index.html` in a browser while the API server is running.
+
+## Deployment
+
+Sample Docker and Railway configurations are provided in the `deploy/` folder
+together with a minimal GitHub Actions workflow.

@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+from api import server
 from api.server import app
 from api.utils import Job, jobs
 import uuid
@@ -26,3 +27,15 @@ def test_generate_and_status():
         resp = client.get(f"/api/status/{job_id}")
         assert resp.status_code == 200
         assert resp.json()["status"] == "completed"
+
+def test_analytics():
+    server.analytics["projects_created"] = 0
+    server.analytics["types"].clear()
+    with patch("api.server.start_generation", dummy_start_generation):
+        resp = client.post("/api/generate", json={"project_name": "a", "description": "chat app"})
+        assert resp.status_code == 200
+    resp = client.get("/api/analytics")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["projects_created"] == 1
+    assert data["types"]["realtime-chat"] == 1
